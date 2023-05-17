@@ -1,6 +1,6 @@
 'use client';
 
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import Login from './components/login-reg/Login';
 import Register from './components/login-reg/Register';
 import toast, { Toaster } from 'react-hot-toast';

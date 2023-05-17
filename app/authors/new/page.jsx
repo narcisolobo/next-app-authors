@@ -2,6 +2,7 @@ import Author from '@/app/db/models/author-model';
 import dbConnect from '@/app/db/db-connect';
 import AuthorForm from '@/app/components/authors/AuthorForm';
 import { getUser } from '@/app/utils/get-user';
+import { revalidatePath } from 'next/cache';
 
 export const metadata = {
   title: 'Authors DB - Create Author',

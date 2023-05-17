@@ -1,6 +1,8 @@
 'use client';
+
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 
 function AuthorForm({ initialAuthor, submitFunction }) {
   const router = useRouter();
