@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-gray-900;
+}
+
+.nav-link {
+  @apply text-gray-400 text-sm hover:text-gray-200 active:text-gray-200 transition;
+}
