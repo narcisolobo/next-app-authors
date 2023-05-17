@@ -1,8 +1,6 @@
-import Author from '@/app/db/models/author-model';
-import dbConnect from '@/app/db/db-connect';
 import AuthorForm from '@/app/components/authors/AuthorForm';
 import { getUser } from '@/app/utils/get-user';
-import { revalidatePath } from 'next/cache';
+import { createAuthor } from '@/app/actions/author-actions';
 
 export const metadata = {
   title: 'Authors DB - Create Author',
@@ -10,18 +8,6 @@ export const metadata = {
 };
 
 async function NewAuthorPage() {
-  async function createAuthor(author) {
-    'use server';
-
-    await dbConnect();
-    try {
-      const newAuthor = await Author.create(author);
-      return newAuthor;
-    } catch (err) {
-      throw err;
-    }
-  }
-
   const user = await getUser();
 
   const initialAuthor = {

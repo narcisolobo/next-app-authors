@@ -2,6 +2,7 @@ import Author from '@/app/db/models/author-model';
 import dbConnect from '@/app/db/db-connect';
 import { transformEmptyDocument } from '@/app/utils/transform-document';
 import AuthorForm from '@/app/components/authors/AuthorForm';
+import { editAuthor } from '@/app/actions/author-actions';
 
 export const metadata = {
   title: 'Authors DB - Edit Author',
@@ -16,20 +17,6 @@ async function EditAuthorPage({ params }) {
     try {
       const authorDoc = await Author.findById(authorId);
       return transformEmptyDocument(authorDoc);
-    } catch (err) {
-      throw err;
-    }
-  };
-
-  const editAuthor = async (author) => {
-    'use server';
-
-    await dbConnect();
-    try {
-      const updatedAuthor = Author.findByIdAndUpdate(author._id, author, {
-        new: true,
-      });
-      return updatedAuthor;
     } catch (err) {
       throw err;
     }

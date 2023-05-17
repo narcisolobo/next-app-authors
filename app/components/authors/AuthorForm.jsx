@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { revalidatePath } from 'next/cache';
 
 function AuthorForm({ initialAuthor, submitFunction }) {
   const router = useRouter();
@@ -30,8 +29,7 @@ function AuthorForm({ initialAuthor, submitFunction }) {
           name: { message: 'Author name must be at least two characters.' },
         };
       }
-      const newAuthor = await submitFunction(author);
-      console.log('new author:', newAuthor);
+      await submitFunction(author);
       setErrors(null);
       router.push('/authors');
     } catch (err) {
@@ -65,7 +63,7 @@ function AuthorForm({ initialAuthor, submitFunction }) {
           <button
             type="submit"
             className="rounded py-2 px-4 bg-gray-700 hover:bg-gray-600 transition">
-            Add Author
+            Submit
           </button>
         </div>
       </form>
