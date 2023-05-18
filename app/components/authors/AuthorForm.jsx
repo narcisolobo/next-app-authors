@@ -19,16 +19,6 @@ function AuthorForm({ initialAuthor, submitFunction }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (!author.name) {
-        throw { name: { message: 'Please enter author name.' } };
-      }
-
-      console.log('author name length"', author.name.trim().length);
-      if (author.name.trim().length < 2) {
-        throw {
-          name: { message: 'Author name must be at least two characters.' },
-        };
-      }
       await submitFunction(author);
       setErrors(null);
       router.push('/authors');

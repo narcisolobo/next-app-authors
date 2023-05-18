@@ -5,10 +5,25 @@ import { revalidatePath } from 'next/cache';
 async function createAuthor(author) {
   'use server';
 
-  await dbConnect();
   try {
-    await Author.create(author);
+    await fetch('http://localhost:3000/api/authors', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(author),
+    });
     revalidatePath('/authors');
+  } catch (err) {
+    throw err;
+  }
+}
+
+async function getAllAuthors() {
+  try {
+    const res = await fetch('http://localhost:3000/api/authors', {
+      cache: 'no-store',
+    });
+    const authors = await res.json();
+    return authors;
   } catch (err) {
     throw err;
   }
@@ -40,4 +55,4 @@ async function deleteAuthor(authorId) {
   }
 }
 
-export { createAuthor, editAuthor, deleteAuthor };
+export { createAuthor, getAllAuthors, editAuthor, deleteAuthor };
